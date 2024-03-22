@@ -24,7 +24,7 @@ function FooterInicial() {
         <div className='flex flex-col gap-2 items-center text-white'>
             <h1>Social</h1>
         <div className='flex items-center gap-8'>
-            <FaInstagram />
+            <FaInstagram/>
             <FaTiktok />
             <FaXTwitter />
         </div>
