@@ -60,8 +60,8 @@ function Login() {
                     </div>
                     <div className='flex flex-row mt-4'>
                     <input type="checkbox" id='LembrarSenha' name='LembrarSenha' className='flex mt-2'/>
-                    <label  className='mt-1.5 ml-1'>Lembrar Senha</label>
-                    <a href='' className='flex absolute ml-64 mt-1 text-sky-400 underline'>Esqueceu a senha?</a>
+                    <label for="LembrarSenha" className='mt-1.5 ml-1'>Lembrar Senha</label>
+                    <a onClick={() => Navigate('/')} className='flex absolute ml-64 mt-1 text-sky-400 underline'>Esqueceu a senha?</a>
                     </div>
                     <div className="flex w-full mt-16 justify-between">
                         <div className="flex flex-col">
@@ -71,7 +71,7 @@ function Login() {
                         </button>
                     </div>
                     <div className='flex justify-center mt-2 '>
-                        Não possui uma conta?Regitre-se<a className='flex text-sky-500 ml-1 underline' href='Registro'>aqui</a>
+                        Não possui uma conta?Regitre-se<a className='flex text-sky-500 ml-1 underline cursor-pointer' onClick={() => Navigate('/EscolhaCadastro')}>aqui</a>
                     </div>
                 </from>
             </div>
