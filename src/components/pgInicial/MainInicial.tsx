@@ -10,7 +10,7 @@ function MainInicial() {
                     dinâmica,através da divulgação de vagas de  emprego e currículos de possíveis colaboradores...</p>
             </div>
             <div>
-                <img src="CurriculoBusca.svg" alt="Curriculo busca" className='flex w-10/12 lg:ml-20 xl:ml-80' />
+                <img src="CurriculoBusca.svg" alt="Curriculo busca" className='flex w-3/4 lg:w-2/3 lg:ml-14 xl:ml-52 lg:mt-0' />
             </div>
         </main>
     )

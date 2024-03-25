@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TiUser } from "react-icons/ti";
 
@@ -38,15 +38,15 @@ function Login() {
                 <from>
                     <div className="mt-8 grid grid-cols-1 gap-2">
                         <div className="w-4/5">
-                            <label for="email" className="block text-sm font-medium leading-6 text-white">E-mail</label>
+                            <label  className="block text-sm font-medium leading-6 text-white">E-mail</label>
                             <div className="mt-2">
-                                <input onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email" autocomplete="email" className="lock w-96 rounded-md border-0 p-2.5 bg-black text-white ring-1 ring-blue-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 shadow-lg shadow-slate-800" />
+                                <input onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email"  className="lock w-96 rounded-md border-0 p-2.5 bg-black text-white ring-1 ring-blue-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 shadow-lg shadow-slate-800" />
                             </div>
                         </div>
                     </div>
                     <div className="mt-4 w-auto grid grid-cols-1">
                         <div className="sm:col-span-3">
-                            <label for="email" className="block text-sm font-medium leading-6 text-white">Senha</label>
+                            <label  className="block text-sm font-medium leading-6 text-white">Senha</label>
                             <div className="mt-2">
                                 <input onChange={(e) => setSenha(e.target.value)} id="password" name="password" type="password" className="block w-96 rounded-md border-0 p-2.5 bg-black text-white ring-1 ring-blue-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 shadow-lg shadow-slate-800" />
                             </div>
@@ -60,7 +60,7 @@ function Login() {
                     </div>
                     <div className='flex flex-row mt-4'>
                     <input type="checkbox" id='LembrarSenha' name='LembrarSenha' className='flex mt-2'/>
-                    <label for="LembrarSenha" className='mt-1.5 ml-1'>Lembrar Senha</label>
+                    <label  className='mt-1.5 ml-1'>Lembrar Senha</label>
                     <a href='' className='flex absolute ml-64 mt-1 text-sky-400 underline'>Esqueceu a senha?</a>
                     </div>
                     <div className="flex w-full mt-16 justify-between">
