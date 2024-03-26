@@ -1,4 +1,3 @@
-import React from 'react'
 import EscolherCadastro from '../components/EscolherCadastro'
 
 function EscolhaCadastro() {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { TiUser } from "react-icons/ti";
 import { BsSuitcaseLgFill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +7,7 @@ function EscolherCadastro() {
     const Navigate = useNavigate()
     return (
         <main className='flex flex-row w-screen h-screen items-center justify-center'>
-            <img src="FundoW.svg" alt="Fundo da tela" className='flex h-fit w-full z-0 ml-0' />
+            <div className="bg-[url('/public/FundoW.svg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>
             <p className='flex absolute top-20 text-4xl font-semibold'>CADASTRAR CONTA COMO:</p>
             <div className='flex flex-row justify-between gap-80 text-8xl z-10 text-black absolute'>
                 

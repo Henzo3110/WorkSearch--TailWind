@@ -1,4 +1,3 @@
-import React from 'react'
 import FormCriarConta from '../components/FormCriarConta'
 
 function PaginaRegistroUser2() {

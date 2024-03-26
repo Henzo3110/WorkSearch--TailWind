@@ -11,6 +11,7 @@ export default {
     extend: {
       backgroundImage: {
         'FundoInicial': "url('/public/fundoInicial.jpg')",
+        'FundoLogin' : "url('/public/FundoW.svg')",
       }
     },
   },

@@ -1,4 +1,3 @@
-import React from 'react'
 import FormRegistroUser from '../components/FormRegistroUser'
 
 function PaginaRegistroUser1() {

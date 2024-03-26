@@ -1,4 +1,3 @@
-import React from 'react'
 import PaginaInicial from "./pages/PaginaInicial"
 import PaginaLogin from "./pages/PaginaLogin"
 import EscolhaCadastro from "./pages/EscolhaCadastro"
