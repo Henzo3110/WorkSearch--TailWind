@@ -2,9 +2,9 @@ import FormRegistroEmpresa from '../components/FormRegistroEmpresa'
 
 function PaginaRegistroEmpresa() {
     return (
-        <div>
+        <>
             <FormRegistroEmpresa></FormRegistroEmpresa>
-        </div>
+        </>
     )
 }
 

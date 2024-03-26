@@ -17,16 +17,12 @@ function FormRegistroUser() {
             setTimeout(() => {
                 document.getElementById('CamposIncompletos').style.display = "none"
             }, 5000)
-
-            Navigate('/Registrar-se')
         } else if (nome == '' || email !== '') {
             document.getElementById('EmailSenhaErr').style.display = "flex"
             document.getElementById('CamposIncompletos').style.display = "none"
             setTimeout(() => {
                 document.getElementById('EmailSenhaErr').style.display = "none"
             }, 5000)
-
-            Navigate('/Registrar-se')
         } else {
             Navigate('/Entrou')
         }

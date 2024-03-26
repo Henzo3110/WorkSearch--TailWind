@@ -18,16 +18,12 @@ function FormRegistroEmpresa() {
             setTimeout(() => {
                 document.getElementById('CamposIncompletos').style.display = "none"
             }, 5000)
-
-            Navigate('/Registrar-se')
         } else if (razaosocial == '' || email !== '') {
             document.getElementById('EmailSenhaErr').style.display = "flex"
             document.getElementById('CamposIncompletos').style.display = "none"
             setTimeout(() => {
                 document.getElementById('EmailSenhaErr').style.display = "none"
             }, 5000)
-
-            Navigate('/Registrar-se')
         } else {
             Navigate('/Entrou')
         }
@@ -35,17 +31,20 @@ function FormRegistroEmpresa() {
 
     return (
         <>
-            <div className="flex flex-row w-screen h-screen justify-center items-center ">
+            <div className="flex w-screen h-screen justify-center items-center ">
             <div className="bg-[url('/public/FundoW.svg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>
-                <card className="flex flex-col items-center gap-5 border-4 w-1/4 h-fit absolute left-14 bg-gradient-to-br from-sky-300 via-sky-200 to-sky-100 rounded-3xl ">
+            <div className='flex flex-row h-4/5 w-5/6'>
+                <div className="hidden lg:flex flex-col items-center gap-5 border-4 w-1/3 h-full bg-gradient-to-br from-sky-300 via-sky-200 to-sky-100 rounded-3xl ">
                     <img src="LogoMin.svg" alt="Logo Registro" />
-                    <h1 className="flex font-semibold text-2xl" >Seja Bem-Vindo(A)!</h1>
+                    <h1 className="flex font-semibold p-8 text-center lg:text-2xl" >Seja Bem-Vindo(A)!</h1>
                     <h2 className="flex font-bold text-sky-500 text-3xl">CRIAR CONTA</h2>
-                    <p className="flex mt-52 mb-4">Ja possui uma conta? Entre <a className="underline text-sky-500 ml-1 cursor-pointer" onClick={() => Navigate('/login')}>aqui</a></p>
-                </card>
-                <card className="flex flex-col items-center w-3/5 h-fit pt-8 pb-12 border-4 rounded-3xl ml-60 bg-gray-100 ">
+                    <div className='h-full w-full flex justify-center items-end'>
+                    <p className="flex">Ja possui uma conta? Entre <a className="underline text-sky-500 ml-1 cursor-pointer" onClick={() => Navigate('/login')}>aqui</a></p>
+                    </div>
+                </div>
+                <div className="flex flex-col justify-center items-center w-full h-full pt-8 pb-12 border-4 rounded-3xl bg-gray-100">
                     <form>
-                        <div className=" grid grid-cols-2 mt-10 gap-5">
+                        <div className="grid grid-cols-1 gap-3 xl:gap-10 xl:grid-cols-2 xl:mt-10 2xl:gap-32">
                             <div className="w-auto">
                                 <div className="w-4/5">
                                     <label htmlFor="name" className="block text-sm font-medium leading-6 text-black">Razão Social: </label>
@@ -109,13 +108,14 @@ function FormRegistroEmpresa() {
                                 <small className='text-red-500'>Campos Inconpletos</small>
                             </div>
                         </div>
-                        <div className="flex w-full mt-10 justify-center">
-                            <button onClick={(e) => { e.preventDefault(); Verifica(); Navigate('/RegistroConta')}} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold py-2 px-4 rounded-full">
+                        <div className="flex w-full justify-center">
+                            <button onClick={(e) => { e.preventDefault(); Verifica(); Navigate('/RegistroConta')}} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
                                 Próximo Passo
                             </button>
                         </div>
                     </form>
-                </card>
+                    </div>
+                </div>
             </div>
         </>
     )

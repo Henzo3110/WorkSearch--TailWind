@@ -35,7 +35,7 @@ function Login() {
         <div className="flex flex-col w-screen h-screen justify-center items-center">
             <div className="flex flex-col items-center w-5/12 h-fit pt-8 pb-12 border-4 rounded-3xl bg-gray-600">
             <TiUser className='flex mt-0 text-cyan-400 bg-white border-solid border-4 rounded-full border-cyan-400 text-9xl ' />
-                <h2 className="font-bold text-4xl mt-8 text-cyan-400">Login</h2>
+                <h2 className="font-bold text-4xl mt-8 text-sky-300">Login</h2>
                 <h1 className="font-bold text-2xl mt-4 text-white">Bem-Vindo De Volta</h1>
                 <from>
                     <div className="mt-8 grid grid-cols-1 gap-2">
@@ -63,7 +63,7 @@ function Login() {
                     <div className='flex flex-row mt-4'>
                     <input type="checkbox" id='LembrarSenha' name='LembrarSenha' className='flex mt-2'/>
                     <label htmlFor='LembrarSenha'  className='mt-1.5 ml-1'>Lembrar Senha</label>
-                    <a onClick={() => Navigate('/')} className='flex absolute ml-64 mt-1 text-sky-400 underline cursor-pointer'>Esqueceu a senha?</a>
+                    <a onClick={() => Navigate('/RecuperarSenha')} className='flex absolute ml-64 mt-1 text-sky-400 underline cursor-pointer'>Esqueceu a senha?</a>
                     </div>
                     <div className="flex w-full mt-16 justify-between">
                         <div className="flex flex-col">

@@ -10,8 +10,8 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'FundoInicial': "url('/public/fundoInicial.jpg')",
-        'FundoLogin' : "url('/public/FundoW.svg')",
+        'FundoInicial': "url('/fundoInicial.jpg')",
+        'FundoLogin' : "url('/FundoW.svg')",
       }
     },
   },
