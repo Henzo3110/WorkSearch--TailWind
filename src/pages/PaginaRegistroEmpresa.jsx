@@ -1,4 +1,4 @@
-import FormRegistroEmpresa from '../components/FormRegistroEmpresa'
+import FormRegistroEmpresa from '../components/Cadastro/FormRegistroEmpresa'
 
 function PaginaRegistroEmpresa() {
     return (

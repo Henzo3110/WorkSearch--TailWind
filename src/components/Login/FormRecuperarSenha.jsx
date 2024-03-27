@@ -14,7 +14,7 @@ function FormRecuperarSenha() {
             setTimeout(() => {
                 document.getElementById('CamposIncompletos').style.display = "none"
             }, 5000)
-        } else if (email !== 'aleksander35517@fiec.edu.br' || senha !== '123456') {
+        } else if (email !== 'aleksander35517@fiec.edu.br' || novasenha !== '123456') {
             document.getElementById('EmailSenhaErr').style.display = "flex"
             document.getElementById('CamposIncompletos').style.display = "none"
             setTimeout(() => {

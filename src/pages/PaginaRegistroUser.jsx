@@ -1,4 +1,4 @@
-import FormRegistroUser from '../components/FormRegistroUser'
+import FormRegistroUser from '../components/Cadastro/FormRegistroUser'
 
 function PaginaRegistroUser1() {
 

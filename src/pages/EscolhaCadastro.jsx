@@ -1,4 +1,4 @@
-import EscolherCadastro from '../components/EscolherCadastro'
+import EscolherCadastro from '../components/Cadastro/EscolherCadastro'
 
 function EscolhaCadastro() {
 

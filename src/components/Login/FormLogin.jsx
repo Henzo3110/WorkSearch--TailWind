@@ -40,17 +40,17 @@ function Login() {
                 <from>
                     <div className="mt-8 grid grid-cols-1 gap-2">
                         <div className="w-4/5">
-                            <label  className="block text-sm font-medium leading-6 text-white">E-mail</label>
+                            <label  className="block text-sm font-medium leading-6 text-white ml-2.5">E-mail:</label>
                             <div className="mt-2">
-                                <input onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email"  className="lock w-96 rounded-md border-0 p-2.5 bg-black text-white ring-1 ring-blue-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 shadow-lg shadow-slate-800" />
+                                <input onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email"  className="lock w-96 rounded-full border-0 p-2.5 ring-4 ring-sky-400" />
                             </div>
                         </div>
                     </div>
                     <div className="mt-4 w-auto grid grid-cols-1">
                         <div className="sm:col-span-3">
-                            <label  className="block text-sm font-medium leading-6 text-white">Senha</label>
+                            <label  className="block text-sm font-medium leading-6 text-white ml-2.5">Senha:</label>
                             <div className="mt-2">
-                                <input onChange={(e) => setSenha(e.target.value)} id="password" name="password" type="password" className="block w-96 rounded-md border-0 p-2.5 bg-black text-white ring-1 ring-blue-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 shadow-lg shadow-slate-800" />
+                                <input onChange={(e) => setSenha(e.target.value)} id="password" name="password" type="password" className="block w-96 rounded-full border-0 p-2.5 ring-4  ring-sky-400" />
                             </div>
                             <div id='EmailSenhaErr' className='hidden justify-center mt-6'>
                                 <small className='text-red-500'>E-mail ou Senha Incorreto</small>
@@ -62,7 +62,7 @@ function Login() {
                     </div>
                     <div className='flex flex-row mt-4'>
                     <input type="checkbox" id='LembrarSenha' name='LembrarSenha' className='flex mt-2'/>
-                    <label htmlFor='LembrarSenha'  className='mt-1.5 ml-1'>Lembrar Senha</label>
+                    <label htmlFor='LembrarSenha'  className='mt-1.5 ml-1 text-white'>Lembrar Senha</label>
                     <a onClick={() => Navigate('/RecuperarSenha')} className='flex absolute ml-64 mt-1 text-sky-400 underline cursor-pointer'>Esqueceu a senha?</a>
                     </div>
                     <div className="flex w-full mt-16 justify-between">
@@ -72,7 +72,7 @@ function Login() {
                             Entrar
                         </button>
                     </div>
-                    <div className='flex justify-center mt-2 '>
+                    <div className='flex justify-center mt-2 text-white'>
                         Não possui uma conta?Regitre-se<a className='flex text-sky-500 ml-1 underline cursor-pointer' onClick={() => Navigate('/EscolhaCadastro')}>aqui</a>
                     </div>
                 </from>

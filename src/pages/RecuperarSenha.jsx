@@ -1,4 +1,4 @@
-import FormRecuperarSenha from '../components/FormRecuperarSenha'
+import FormRecuperarSenha from '../components/Login/FormRecuperarSenha'
 
 function RecuperarSenha() {
     return (

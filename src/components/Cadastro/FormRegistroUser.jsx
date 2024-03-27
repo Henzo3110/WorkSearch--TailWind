@@ -7,27 +7,21 @@ function FormRegistroUser() {
     const [sobrenome, setSobrenome] = useState('')
     const [email, setEmail] = useState('')
     const [telefone, setTelefone] = useState('')
-    const [datadenascimento, setData] = useState('')
+    const [datadenascimento, setDatanascimento] = useState('')
     const [cpf, setCpf] = useState('')
+    const [error,setError] = useState('')
 
     const Verifica = () => {
-        if (nome == '' || sobrenome == '' || email == '' || telefone == '' || datadenascimento == '' || cpf == '') {
-            document.getElementById('CamposIncompletos').style.display = "flex"
-            document.getElementById('EmailSenhaErr').style.display = "none"
+        if (!nome || !sobrenome || !email || !telefone || !datadenascimento || !cpf) {
+            setError('Campos não preenchidos')
             setTimeout(() => {
-                document.getElementById('CamposIncompletos').style.display = "none"
-            }, 5000)
-        } else if (nome == '' || email !== '') {
-            document.getElementById('EmailSenhaErr').style.display = "flex"
-            document.getElementById('CamposIncompletos').style.display = "none"
-            setTimeout(() => {
-                document.getElementById('EmailSenhaErr').style.display = "none"
-            }, 5000)
+                setError()
+            },5000)
         } else {
-            Navigate('/Entrou')
+            Navigate('/')
         }
     }
-
+    
     return (
         <>
             <div className="flex w-screen h-screen justify-center items-center ">
@@ -80,7 +74,7 @@ function FormRegistroUser() {
                                 <div className="sm:col-span-3">
                                     <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Data de Nascimento:</label>
                                     <div className="mt-2">
-                                        <input onChange={(e) => setData(e.target.value)} id="data" name="data" type="date" required='true' className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        <input onChange={(e) => setDatanascimento(e.target.value)} id="data" name="data" type="date" required='true' className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                     </div>
                                 </div>
                             </div>
@@ -92,15 +86,10 @@ function FormRegistroUser() {
                                     </div>
                                 </div>
                             </div>
-                            <div id='EmailSenhaErr' className='hidden justify-center mt-2'>
-                                    <small className='text-red-500'>Email ou Senha Invalido</small>
-                                </div>
-                                <div id='CamposIncompletos' className='hidden justify-center mt-2'>
-                                    <small className='text-red-500'>Campos Inconpletos</small>
-                                </div>
                         </div>
+                            <div className='flex text-red-500 font-semibold justify-center mt-4'>{error&& <h1>{error}</h1>}</div>
                         <div className="flex w-full mt-2 xl:mt-10 justify-center">
-                            <button onClick={(e) => { e.preventDefault(); Verifica(); Navigate('/RegistroConta')}} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
+                            <button onClick={(e) => { e.preventDefault(); Verifica()}} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
                                 Próximo Passo
                             </button>
                         </div>

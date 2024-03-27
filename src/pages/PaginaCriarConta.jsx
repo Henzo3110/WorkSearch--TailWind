@@ -1,4 +1,4 @@
-import FormCriarConta from '../components/FormCriarConta'
+import FormCriarConta from '../components/Cadastro/FormCriarConta'
 
 function PaginaRegistroUser2() {
 
