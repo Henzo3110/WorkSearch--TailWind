@@ -15,28 +15,22 @@ function FormCriarConta() {
     const [confirmasenha, setConfirmaSenha] = useState('')
 
     const Verifica = () => {
-        if (pais == '' || estado == '' || cidade == '' || cep == '' || bairro == '' || rua == '' || numero == '' || logradouro == '' || senha == '' || confirmasenha == '') {
-            document.getElementById('CamposIncompletos').style.display = "flex"
-            document.getElementById('EmailSenhaErr').style.display = "none"
+        if (!pais || !estado || !cidade || !cep || !bairro || !rua || !numero || !logradouro || !senha || !confirmasenha) {
             setTimeout(() => {
-                document.getElementById('CamposIncompletos').style.display = "none"
+
             }, 5000)
-        } else if (pais !== '' || senha !== '') {
-            const error = error;
-            document.getElementById('EmailSenhaErr').style.display = "flex"
-            document.getElementById('CamposIncompletos').style.display = "none"
+        } else if (senha !== confirmasenha) {
             setTimeout(() => {
-                document.getElementById('EmailSenhaErr').style.display = "none"
+
             }, 5000)
-        } else {
-            Navigate('/Entrou')
         }
+        Navigate('/Entrou')
     }
 
     return (
         <>
             <div className="flex w-screen h-screen justify-center items-center ">
-            <div className="bg-[url('/public/FundoW.svg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>
+                <div className="bg-[url('/public/FundoW.svg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>
                 <div className='flex flex-row h-4/5 w-5/6'>
                     <div className="hidden lg:flex flex-col items-center gap-5 border-4 w-1/3 h-full bg-gradient-to-br from-sky-300 via-sky-200 to-sky-100 rounded-3xl ">
                         <img src="LogoMin.svg" alt="Logo Registro" />
@@ -132,21 +126,18 @@ function FormCriarConta() {
                                 <div id='EmailSenhaErr' className='hidden justify-center mt-6'>
                                     <small className='text-red-500'>E-mail ou Senha Incorreto</small>
                                 </div>
-                                <div id='CamposIncompletos' className='hidden justify-center mt-6'>
-                                    <small className='text-red-500'>Campos Inconpletos</small>
+                                <div>
+                                    <input type='checkbox' id='Concordar' name='Concordar' className='ml-6 mt-6'></input>
+                                    <label htmlFor="Concordar" className='mt-1.5 ml-1 underline font-semibold'>Concordo com os termos & políticas de uso</label>
+                                </div>
+                                <div className="flex w-full justify-center">
+                                    <button onClick={(e) => { e.preventDefault(); Verifica() }} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
+                                        Criar Conta
+                                    </button>
                                 </div>
                             </div>
-                            <div>
-                                <input type='checkbox' id='Concordar' name='Concordar' className='ml-6 mt-6'></input>
-                                <label htmlFor="Concordar" className='mt-1.5 ml-1 underline font-semibold'>Concordo com os termos & políticas de uso</label>
-                            </div>
-                            <div className="flex w-full justify-center">
-                                <button onClick={(e) => { e.preventDefault(); Verifica(); Navigate('/Menu') }} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
-                                    Criar Conta
-                                </button>
-                            </div>
                         </form>
-                    </div>   
+                    </div>
                 </div>
             </div >
         </>
