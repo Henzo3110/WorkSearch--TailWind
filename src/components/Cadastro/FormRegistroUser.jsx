@@ -9,6 +9,16 @@ function FormRegistroUser() {
     const [telefone, setTelefone] = useState('')
     const [datadenascimento, setDatanascimento] = useState('')
     const [cpf, setCpf] = useState('')
+    const [pais, setPais] = useState('')
+    const [estado, setEstado] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [cep, setCep] = useState('')
+    const [bairro, setBairro] = useState('')
+    const [rua, setRua] = useState('')
+    const [numero, setNumero] = useState('')
+    const [logradouro, setLogradouro] = useState('')
+    const [senha, setSenha] = useState('')
+    const [confirmasenha, setConfirmaSenha] = useState('')
     const [error,setError] = useState('')
 
     const Verifica = () => {
@@ -37,7 +47,7 @@ function FormRegistroUser() {
                 </div>
                 <div className="flex flex-col justify-center items-center w-full h-full pt-8 pb-12 border-4 rounded-3xl bg-gray-100 ">
                     <form>
-                        <div className=" grid grid-cols-1 gap-3 xl:gap-16 xl:grid-cols-2 xl:mt-10 2xl:gap-32">
+                        <div className="  grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
                             <div className=" lg:w-auto">
                                 <div className="w-4/5">
                                     <label htmlFor="name" className="block text-sm font-medium leading-6 text-black">Nome: </label>
@@ -86,6 +96,86 @@ function FormRegistroUser() {
                                     </div>
                                 </div>
                             </div>
+                            <div className="hidden w-auto">
+                                    <div className="w-4/5">
+                                        <label htmlFor="name" className="block ml-6 text-sm font-medium leading-6 text-black">País: </label>
+                                        <div className="">
+                                            <input onChange={(e) => setPais(e.target.value)} id="pais" name="pais" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto ">
+                                    <div className="w-4/5">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Estado(UF):</label>
+                                        <div className="">
+                                            <input onChange={(e) => setEstado(e.target.value)} id="estado" name="estado" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Cidade:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setCidade(e.target.value)} id="cidade" name="cidade" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto ">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">CEP:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setCep(e.target.value)} id="cep" name="cep" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Bairro:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setBairro(e.target.value)} id="bairro" name="bairro" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Rua:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setRua(e.target.value)} id="rua" name="rua" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Numero:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setNumero(e.target.value)} id="cpf" name="cpf" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Logradouro:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setLogradouro(e.target.value)} id="cpf" name="cpf" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Senha:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setSenha(e.target.value)} id="Confirmar Senha" name="Confirmar Senha" type="password" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden w-auto">
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Confirmar Senha:</label>
+                                        <div className="">
+                                            <input onChange={(e) => setConfirmaSenha(e.target.value)} id="Confirmar Senha" name="Confirmar Senha" type="password" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                             <div className='flex text-red-500 font-semibold justify-center mt-4'>{error&& <h1>{error}</h1>}</div>
                         <div className="flex w-full mt-2 xl:mt-10 justify-center">
