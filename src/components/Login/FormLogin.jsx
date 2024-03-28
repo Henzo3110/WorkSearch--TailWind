@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TiUser } from "react-icons/ti";
-import facebookIcon from '../../../public/facebook.svg'
-import googleIcon from '../../../public/google.svg'
-import instagramIcon from '../../../public/instagram.svg'
+import facebookIcon from '/facebook.svg'
+import googleIcon from '/google.svg'
+import instagramIcon from '/instagram.svg'
 
 function Login() {
     const Navigate = useNavigate()
