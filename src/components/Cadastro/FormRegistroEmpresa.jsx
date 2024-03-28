@@ -3,47 +3,65 @@ import { useNavigate } from 'react-router-dom'
 
 function FormRegistroEmpresa() {
     const Navigate = useNavigate()
-    const [razaosocial, setRazao] = useState('')
-    const [fantasia, setFantasia] = useState('')
-    const [cnpj, setCnpj] = useState('')
-    const [inscricao, setInscricao] = useState('')
-    const [setor, setSetor] = useState('')
-    const [email, setEmail] = useState('')
-    const [telefone, setTelefone] = useState('')
-    const [pais, setPais] = useState('')
-    const [estado, setEstado] = useState('')
-    const [cidade, setCidade] = useState('')
-    const [cep, setCep] = useState('')
-    const [bairro, setBairro] = useState('')
-    const [rua, setRua] = useState('')
-    const [numero, setNumero] = useState('')
-    const [complemento, setcomplemento] = useState('')
-    const [senha, setSenha] = useState('')
-    const [confirmasenha, setConfirmaSenha] = useState('')
-    const [error,setError] = useState('')
 
-    const Verifica = () => {
+    const[ValorDeEntrada,setValorDeEntrada] = useState({
+        razaosocial:"",
+        fantasia:"",
+        cnpj:"",
+        inscricao:"",
+        setor:"",
+        email:"",
+        telefone:""
 
-        if (!razaosocial || !fantasia || !email || !telefone || !cnpj || !inscricao || !setor) {
-            setError('Campos não preenchidos')
-            setTimeout(() => {
-                setError()
-            }, 5000)
-        } else {
-            Navigate('/')
-        }   
+    })
+
+    const [data,setData] = useState([]);
+    console.log(ValorDeEntrada);
+
+    const getdata = (e) => {
+        const {value,name} = e.target;
+
+        setValorDeEntrada(() => {
+            return {
+                ...ValorDeEntrada,
+                [name]:value
+            }
+        })
     }
-    
-    const Verifica2 = () => {
+    const addData = (e) =>{
+        e.preventDefault();
 
-        if (!pais || !estado || !cidade || !cep || !bairro || !rua || !numero || !complemento || !senha || !confirmasenha) {
-            setError('Campos não preenchidos')
-            setTimeout(() => {
-                setError()
-            }, 5000)
-        } else {
-            Navigate('/')
-        }   
+        const {razaosocial,fantasia,cnpj,inscricao,setor,email,telefone} = ValorDeEntrada;
+
+        if(razaosocial === ""){
+            alert("Razao social é um campo requirido")
+        }
+        else if (fantasia === ""){
+            alert("Fantasia é um campo requirido")
+        }
+        else if (cnpj === ""){
+            alert("Cnpj é um campo requirido")
+        }
+        else if (inscricao === ""){
+            alert("Incrição Estadual é um campo requirido")
+        }
+        else if (setor === ""){
+            alert("Setor de Atuação é um campo requirido")
+        }
+        else if (email === ""){
+            alert("E-Mail é um campo requirido")
+        }
+        else if (!email.includes("@")){
+            alert("E-Mail invalido")
+        }
+        else if (telefone === ""){
+            alert("Telefone é um campo requirido")
+        }
+        else {
+            // Navigate('/')
+
+            localStorage.setItem("UsuarioEmpresa",JSON.stringify([...data,ValorDeEntrada]));
+        }
     }
 
 
@@ -67,7 +85,7 @@ function FormRegistroEmpresa() {
                                     <div className="w-4/5">
                                         <label htmlFor="name" className="block text-sm font-medium leading-6 text-black">Razão Social: </label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setRazao(e.target.value)} id="razaosocial" name="razaosocial" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="razaosocial" name="razaosocial" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +93,7 @@ function FormRegistroEmpresa() {
                                     <div className="w-4/5">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Fantasia:</label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setFantasia(e.target.value)} id="fantasia" name="fantasia" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="fantasia" name="fantasia" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +101,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">CNPJ:</label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setCnpj(e.target.value)} id="cnpj" name="cnpj" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="cnpj" name="cnpj" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +109,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Inscrição Estadual:</label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setInscricao(e.target.value)} id="inscricao" name="inscricao" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="inscricao" name="inscricao" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +117,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Setor de atuação:</label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setSetor(e.target.value)} id="setor" name="setor" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="setor" name="setor" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +125,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">E-Mail:</label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="email" name="email" type="email"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +133,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Telefone:</label>
                                         <div className="mt-2">
-                                            <input onChange={(e) => setTelefone(e.target.value)} id="telefone" name="telefone" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="telefone" name="telefone" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +141,7 @@ function FormRegistroEmpresa() {
                                     <div className="w-4/5">
                                         <label htmlFor="name" className="block ml-6 text-sm font-medium leading-6 text-black">País: </label>
                                         <div className="">
-                                            <input onChange={(e) => setPais(e.target.value)} id="pais" name="pais" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="pais" name="pais" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +149,7 @@ function FormRegistroEmpresa() {
                                     <div className="w-4/5">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Estado(UF):</label>
                                         <div className="">
-                                            <input onChange={(e) => setEstado(e.target.value)} id="estado" name="estado" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="estado" name="estado" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +157,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Cidade:</label>
                                         <div className="">
-                                            <input onChange={(e) => setCidade(e.target.value)} id="cidade" name="cidade" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="cidade" name="cidade" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +165,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">CEP:</label>
                                         <div className="">
-                                            <input onChange={(e) => setCep(e.target.value)} id="cep" name="cep" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="cep" name="cep" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +173,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Bairro:</label>
                                         <div className="">
-                                            <input onChange={(e) => setBairro(e.target.value)} id="bairro" name="bairro" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="bairro" name="bairro" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +181,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Rua:</label>
                                         <div className="">
-                                            <input onChange={(e) => setRua(e.target.value)} id="rua" name="rua" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="rua" name="rua" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +189,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Numero:</label>
                                         <div className="">
-                                            <input onChange={(e) => setNumero(e.target.value)} id="cpf" name="cpf" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="cpf" name="cpf" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +197,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">complemento:</label>
                                         <div className="">
-                                            <input onChange={(e) => setcomplemento(e.target.value)} id="cpf" name="cpf" type="text" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="cpf" name="cpf" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +205,7 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Senha:</label>
                                         <div className="">
-                                            <input onChange={(e) => setSenha(e.target.value)} id="Confirmar Senha" name="Confirmar Senha" type="password" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="Confirmar Senha" name="Confirmar Senha" type="password"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -195,19 +213,16 @@ function FormRegistroEmpresa() {
                                     <div className="sm:col-span-3">
                                         <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Confirmar Senha:</label>
                                         <div className="">
-                                            <input onChange={(e) => setConfirmaSenha(e.target.value)} id="Confirmar Senha" name="Confirmar Senha" type="password" required='true' className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                            <input onChange={getdata} id="Confirmar Senha" name="Confirmar Senha" type="password"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                         </div>
                                     </div>
                                 </div>
                             
                             </div>
-                            <div className='flex text-red-500 font-semibold justify-center mt-4'>{error && <h1>{error}</h1>}</div>
+                            {/* <div className='flex text-red-500 font-semibold justify-center mt-4'>{error && <h1>{error}</h1>}</div> */}
                             <div className="flex w-full mt-2 xl:mt-10 justify-center">
-                                <button onClick={(e) => { e.preventDefault(); Verifica() }} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full ">
+                                <button onClick={addData} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full ">
                                     Próximo Passo
-                                </button>
-                                <button onClick={(e) => { e.preventDefault(); Verifica2() }} className=" hidden w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
-                                    Criar Conta
                                 </button>
                             </div>
                         </form>

@@ -7,30 +7,61 @@ import instagramIcon from '/instagram.svg'
 
 function Login() {
     const Navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
+    const[ValorDeEntrada,setValorDeEntrada] = useState({
+        email:"",
+        senha:""
 
-    const Verifica = () => {
-        if (email == '' || senha == '') {
-            document.getElementById('CamposIncompletos').style.display = "flex"
-            document.getElementById('EmailSenhaErr').style.display = "none"
-            setTimeout(() => {
-                document.getElementById('CamposIncompletos').style.display = "none"
-            }, 5000)
+    })
 
-            Navigate('/')
-        } else if (email !== 'aleksander35517@fiec.edu.br' || senha !== '123456') {
-            document.getElementById('EmailSenhaErr').style.display = "flex"
-            document.getElementById('CamposIncompletos').style.display = "none"
-            setTimeout(() => {
-                document.getElementById('EmailSenhaErr').style.display = "none"
-            }, 5000)
+    const [data,setData] = useState([]);
+    console.log(ValorDeEntrada);
 
-            Navigate('/')
-        } else {
-            Navigate('/Entrou')
+    const getdata = (e) => {
+        const {value,name} = e.target;
+
+        setValorDeEntrada(() => {
+            return {
+                ...ValorDeEntrada,
+                [name]:value
+            }
+        })
+    }
+    const addData = (e) =>{
+        e.preventDefault();
+
+        const getuserarr = localStorage.getItem("UsuarioEmpresa");
+
+        const {email,senha} = ValorDeEntrada;
+
+        if(email === ""){
+            alert("Campo E-mail não foi preenchido")
+        }
+        else if (!email.includes("@")){
+            alert("E-Mail invalido")
+        }
+        else if (!senha === ""){
+            alert("Campo senha não foi preenchido");
+        }
+        else {
+            
+            if(getuserarr && getuserarr.length){
+                const userdata = JSON.parse(getuserarr);
+                const userlogin = userdata.filter((el,k) =>{
+                    return el.email === email && el.senha === senha
+                });
+
+                if(userlogin.length === 0){
+                    alert("Usuario Invalido")
+                }else{
+                    Navigate('/')
+                }
+            }
         }
     }
+
+
+
+   
 
     return (
         <>
@@ -45,7 +76,7 @@ function Login() {
                         <div className="w-4/5">
                             <label  className="block text-sm font-medium leading-6 text-white ml-2.5">E-mail:</label>
                             <div className="mt-2">
-                                <input onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email"  className="lock w-96 rounded-full border-0 p-2.5 ring-4 ring-sky-400" />
+                                <input onChange={getdata} id="email" name="email" type="email"  className="lock w-96 rounded-full border-0 p-2.5 ring-4 ring-sky-400" />
                             </div>
                         </div>
                     </div>
@@ -53,7 +84,7 @@ function Login() {
                         <div className="sm:col-span-3">
                             <label  className="block text-sm font-medium leading-6 text-white ml-2.5">Senha:</label>
                             <div className="mt-2">
-                                <input onChange={(e) => setSenha(e.target.value)} id="password" name="password" type="password" className="block w-96 rounded-full border-0 p-2.5 ring-4  ring-sky-400" />
+                                <input onChange={getdata} id="senha" name="senha" type="password" className="block w-96 rounded-full border-0 p-2.5 ring-4  ring-sky-400" />
                             </div>
                             <div id='EmailSenhaErr' className='hidden justify-center mt-6'>
                                 <small className='text-red-500'>E-mail ou Senha Incorreto</small>
@@ -79,7 +110,7 @@ function Login() {
                     <div className="flex w-full mt-5 justify-between">
                         <div className="flex flex-col">
                         </div>
-                        <button onClick={(e) => { e.preventDefault(); Verifica() }} type='submit' className="bg-cyan-300 hover:bg-cyan-600 text-white font-bold w-5/6 py-2 px-4 border border-black rounded-full mr-8">
+                        <button onClick={addData} type='submit' className="bg-cyan-300 hover:bg-cyan-600 text-white font-bold w-5/6 py-2 px-4 border border-black rounded-full mr-8">
                             Entrar
                         </button>
                     </div>
