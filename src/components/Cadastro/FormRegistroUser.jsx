@@ -3,60 +3,108 @@ import { useNavigate } from 'react-router-dom'
 
 function FormRegistroUser() {
     const Navigate = useNavigate()
-   
-    const[ValorDeEntrada,setValorDeEntrada] = useState({
-        nome:"",
-        sobrenome:"",
-        email:"",
-        telefone:"",
-        datadenascimento:"",
-        cpf:""
+
+    const SwitchForm = () => {
+        document.getElementById('campos1').style.display = 'none'
+        document.getElementById('campos2').style.display = 'block'
+        document.getElementById('butao').textContent = 'Criar Conta'
+    }
+
+    const [ValorDeEntrada, setValorDeEntrada] = useState({
+        nome: "",
+        sobrenome: "",
+        email: "",
+        telefone: "",
+        datadenascimento: "",
+        cpf: "",
+        pais: "",
+        estado: "",
+        cidade: "",
+        cep: "",
+        bairro: "",
+        rua: "",
+        numero: "",
+        complemento: "",
+        senha: "",
+        confirmarsenha: ""
 
     })
 
-    const [data,setData] = useState([]);
+    const [data, setData] = useState([]);
     console.log(ValorDeEntrada);
 
     const getdata = (e) => {
-        const {value,name} = e.target;
+        const { value, name } = e.target;
 
         setValorDeEntrada(() => {
             return {
                 ...ValorDeEntrada,
-                [name]:value
+                [name]: value
             }
         })
     }
-    const addData = (e) =>{
+    const addData = (e) => {
         e.preventDefault();
 
-        const {nome,sobrenome,email,telefone,datadenascimento,cpf} = ValorDeEntrada;
+        const { nome, sobrenome, email, telefone, datadenascimento, cpf, pais, estado, cidade, cep, bairro, rua, numero, complemento, senha, confirmarsenha } = ValorDeEntrada;
 
-        if(!nome){
+        if (!nome) {
             alert("Nome é um campo requirido")
         }
-        else if (!sobrenome){
+        else if (!sobrenome) {
             alert("sobrenome é um campo requirido")
         }
-        else if (!datadenascimento){
+        else if (!datadenascimento) {
             alert("Data de Nascimento é um campo requirido")
         }
-        else if (!cpf){
+        else if (!cpf) {
             alert("cpf de Atuação é um campo requirido")
         }
-        else if (!email){
+        else if (!email) {
             alert("E-Mail é um campo requirido")
         }
-        else if (!email.includes("@")){
+        else if (!email.includes("@")) {
             alert("E-Mail invalido")
         }
-        else if (!telefone){
+        else if (!telefone) {
             alert("Telefone é um campo requirido")
         }
         else {
-            // Navigate('/')
-
-            localStorage.setItem("UsuarioCandidato",JSON.stringify([...data,ValorDeEntrada]));
+            SwitchForm()
+            localStorage.setItem("UsuarioCandidato", JSON.stringify([...data, ValorDeEntrada]));
+            if (!pais) {
+                alert("Pais é um campo obrigatorio")
+            }
+            else if (!estado) {
+                alert("Estado é um campo obrigatorio")
+            }
+            else if (!cidade) {
+                alert("cidade é um campo obrigatorio")
+            }
+            else if (!cep) {
+                alert("cep é um campo obrigatorio")
+            }
+            else if (!bairro) {
+                alert("bairro é um campo obrigatorio")
+            }
+            else if (!rua) {
+                alert("rua é um campo obrigatorio")
+            }
+            else if (!numero) {
+                alert("numero é um campo obrigatorio")
+            }
+            else if (!complemento) {
+                alert("complemento é um campo obrigatorio")
+            }
+            else if (!senha) {
+                alert("senha é um campo obrigatorio")
+            }
+            else if (!confirmarsenha == senha) {
+                alert("Ambas as senha tem que ser iguais")
+            }
+            else {
+                Navigate('/')
+            }
         }
     }
 
@@ -75,12 +123,13 @@ function FormRegistroUser() {
                     </div>
                     <div className="flex flex-col justify-center items-center w-full h-full pt-8 pb-12 border-4 rounded-3xl bg-gray-100 ">
                         <form>
-                            <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
+                            <div id='campos1'>
+                                <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
                                     <div className="w-auto">
                                         <div className="w-4/5">
                                             <label htmlFor="name" className="block text-sm font-medium leading-6 text-black">Nome: </label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="name" name="nome" type="text"  className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="name" name="nome" type="text" className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +137,7 @@ function FormRegistroUser() {
                                         <div className="w-4/5">
                                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Sobrenome:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="name" name="sobrenome" type="text"  className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="name" name="sobrenome" type="text" className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +145,7 @@ function FormRegistroUser() {
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Email:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="email" name="email" type="email"  className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="email" name="email" type="email" className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +153,7 @@ function FormRegistroUser() {
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Telefone:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="telefone" name="telefone" type="text"  className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="telefone" name="telefone" type="text" className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +161,7 @@ function FormRegistroUser() {
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Data de Nascimento:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="data" name="datadenascimento" type="date"  className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="data" name="datadenascimento" type="date" className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -120,16 +169,18 @@ function FormRegistroUser() {
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">CPF:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="cpf" name="cpf" type="text"  className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="cpf" name="cpf" type="text" className="block w-52 md:w-72 lg:w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                <div>
+                                </div>
+                            </div>
+                                <div id='campos2'>
                                     <div className="hidden w-auto">
                                         <div className="w-4/5">
                                             <label htmlFor="name" className="block ml-6 text-sm font-medium leading-6 text-black">País: </label>
                                             <div className="">
-                                                <input onChange={getdata} id="pais" name="pais" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="pais" name="pais" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +188,7 @@ function FormRegistroUser() {
                                         <div className="w-4/5">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Estado(UF):</label>
                                             <div className="">
-                                                <input onChange={getdata} id="estado" name="estado" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="estado" name="estado" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +196,7 @@ function FormRegistroUser() {
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Cidade:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="cidade" name="cidade" type="text"  className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="cidade" name="cidade" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -206,10 +257,9 @@ function FormRegistroUser() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {/* <div className='flex text-red-500 font-semibold justify-center mt-4'>{error && <h1>{error}</h1>}</div> */}
                             <div className="flex w-full mt-2 xl:mt-10 justify-center">
-                                <button onClick={addData} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
+                                <button id='butao' onClick={addData} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
                                     Próximo Passo
                                 </button>
                             </div>

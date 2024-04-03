@@ -8,7 +8,7 @@ function MainInicial() {
     const Navigate = useNavigate()
     return (
         <>
-            <div className="bg-[url('/public/fundoInicial.jpg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>
+            <div className="bg-[url('/fundoInicial.jpg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>
             <header className='w-full h-20 flex justify-center z-10'>
                 <img src='LOGO.svg' alt='Logo pagina inicial' className=' w-30 lg:w-52 ' />
             </header>
