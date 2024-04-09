@@ -1,14 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function FormRegistroUser() {
+function PaginaRegistroUser() {
     const Navigate = useNavigate()
-
-    const SwitchForm = () => {
-        document.getElementById('campos1').style.display = 'none'
-        document.getElementById('campos2').style.display = 'block'
-        document.getElementById('butao').textContent = 'Criar Conta'
-    }
+    const [troca, setTroca] = useState(false)
+    const [trocaBotao, setTrocaBotao] = useState('próximo passo')
 
     const [ValorDeEntrada, setValorDeEntrada] = useState({
         nome: "",
@@ -47,31 +43,34 @@ function FormRegistroUser() {
         e.preventDefault();
 
         const { nome, sobrenome, email, telefone, datadenascimento, cpf, pais, estado, cidade, cep, bairro, rua, numero, complemento, senha, confirmarsenha } = ValorDeEntrada;
+        if (troca == false) {
+            if (!nome) {
+                alert("Nome é um campo requirido")
+            }
+            else if (!sobrenome) {
+                alert("sobrenome é um campo requirido")
+            }
+            else if (!datadenascimento) {
+                alert("Data de Nascimento é um campo requirido")
+            }
+            else if (!cpf) {
+                alert("cpf de Atuação é um campo requirido")
+            }
+            else if (!email) {
+                alert("E-Mail é um campo requirido")
+            }
+            else if (!email.includes("@")) {
+                alert("E-Mail invalido")
+            }
+            else if (!telefone) {
+                alert("Telefone é um campo requirido")
+            } else {
+                setTroca(true)
+                setTrocaBotao('Criar Conta')
+            }
+        } else {
+            localStorage.setItem("UsuarioEmpresa", JSON.stringify([...data, ValorDeEntrada]))
 
-        if (!nome) {
-            alert("Nome é um campo requirido")
-        }
-        else if (!sobrenome) {
-            alert("sobrenome é um campo requirido")
-        }
-        else if (!datadenascimento) {
-            alert("Data de Nascimento é um campo requirido")
-        }
-        else if (!cpf) {
-            alert("cpf de Atuação é um campo requirido")
-        }
-        else if (!email) {
-            alert("E-Mail é um campo requirido")
-        }
-        else if (!email.includes("@")) {
-            alert("E-Mail invalido")
-        }
-        else if (!telefone) {
-            alert("Telefone é um campo requirido")
-        }
-        else {
-            SwitchForm()
-            localStorage.setItem("UsuarioCandidato", JSON.stringify([...data, ValorDeEntrada]));
             if (!pais) {
                 alert("Pais é um campo obrigatorio")
             }
@@ -122,8 +121,13 @@ function FormRegistroUser() {
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full h-full pt-8 pb-12 border-4 rounded-3xl bg-gray-100 ">
-                        <form>
-                            <div id='campos1'>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault()
+                                addData(e)
+                            }}>
+                            {/* Campos do 1 Form */}
+                            {troca == false ? (
                                 <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
                                     <div className="w-auto">
                                         <div className="w-4/5">
@@ -174,17 +178,17 @@ function FormRegistroUser() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                                <div id='campos2'>
-                                    <div className="hidden w-auto">
+                            ) : (
+                                <div className=" grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
+                                    <div className="w-auto">
                                         <div className="w-4/5">
                                             <label htmlFor="name" className="block ml-6 text-sm font-medium leading-6 text-black">País: </label>
                                             <div className="">
-                                                <input onChange={getdata} id="pais" name="pais" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="pais" name="pais" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto ">
+                                    <div className="w-auto ">
                                         <div className="w-4/5">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Estado(UF):</label>
                                             <div className="">
@@ -192,7 +196,7 @@ function FormRegistroUser() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Cidade:</label>
                                             <div className="">
@@ -200,7 +204,7 @@ function FormRegistroUser() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto ">
+                                    <div className="w-auto ">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">CEP:</label>
                                             <div className="">
@@ -208,7 +212,7 @@ function FormRegistroUser() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Bairro:</label>
                                             <div className="">
@@ -216,7 +220,7 @@ function FormRegistroUser() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Rua:</label>
                                             <div className="">
@@ -224,51 +228,51 @@ function FormRegistroUser() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Numero:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="cpf" name="cpf" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="numero" name="numero" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Logradouro:</label>
+                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">complemento:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="cpf" name="cpf" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="complemento" name="complemento" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Senha:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="Confirmar Senha" name="Confirmar Senha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="senha" name="senha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden w-auto">
+                                    <div className="w-auto">
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Confirmar Senha:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="Confirmar Senha" name="Confirmar Senha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} id="confirmar Senha" name="confirmarsenha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            {/* <div className='flex text-red-500 font-semibold justify-center mt-4'>{error && <h1>{error}</h1>}</div> */}
+                                    {/* <div className='flex text-red-500 font-semibold justify-center mt-4'>{error && <h1>{error}</h1>}</div> */}
+                                </div>)}
                             <div className="flex w-full mt-2 xl:mt-10 justify-center">
                                 <button id='butao' onClick={addData} className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full">
-                                    Próximo Passo
+                                    {trocaBotao}
                                 </button>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     )
 }
 
-export default FormRegistroUser
+export default PaginaRegistroUser

@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function FormRegistroEmpresa() {
+function PaginaRegistroEmpresa() {
     const Navigate = useNavigate()
     const [troca, setTroca] = useState(false)
+    const [trocaBotao, setTrocaBotao] = useState('próximo passo')
 
-    const SwitchForm = () => {
-        setTroca(false)
-        document.getElementById('butao').textContent = 'Criar Conta'
-    }
 
     const [ValorDeEntrada, setValorDeEntrada] = useState({
         razaosocial: "",
@@ -72,6 +69,7 @@ function FormRegistroEmpresa() {
                 alert("Telefone é um campo requirido")
             }else{
             setTroca(true)
+            setTrocaBotao('Criar Conta')
             }
         } else {
             localStorage.setItem("UsuarioEmpresa", JSON.stringify([...data, ValorDeEntrada]));
@@ -110,10 +108,6 @@ function FormRegistroEmpresa() {
                 localStorage.setItem("UsuarioEmpresa", JSON.stringify([...data, ValorDeEntrada]));
                 Navigate('/')
             }
-
-
-
-
         }
     }
 
@@ -283,7 +277,7 @@ function FormRegistroEmpresa() {
                                 </div>)}
                             <div className="flex w-full mt-2 xl:mt-10 justify-center">
                                 <button id='butao' type='submit' className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full ">
-                                    Próximo Passo
+                                    {trocaBotao}
                                 </button>
                             </div>
                         </form>
@@ -294,4 +288,4 @@ function FormRegistroEmpresa() {
     )
 }
 
-export default FormRegistroEmpresa
+export default PaginaRegistroEmpresa
