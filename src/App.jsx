@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PaginaInicial from './pages/PaginaInicial';
-import Login from './pages/Login';
-import RecuperarSenha from './pages/RecuperarSenha';
-import EscolhaCadastro from './pages/EscolhaCadastro';
+import PaginaInicial from './pages/PaginaInicial/PaginaInicial';
+import Login from './pages/Login/Login';
+import RecuperarSenha from './pages/RecuperarSenha/RecuperarSenha';
+import EscolhaCadastro from './pages/EscolhaCadastro/EscolhaCadastro';
 import PaginaRegistroUser from './pages/Registro/PaginaRegistroUser';
 import PaginaRegistroEmpresa from './pages/Registro/PaginaRegistroEmpresa';
 
