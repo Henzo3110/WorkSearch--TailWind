@@ -8,23 +8,8 @@ function PaginaRegistroEmpresa() {
 
 
     const [ValorDeEntrada, setValorDeEntrada] = useState({
-        razaosocial: "",
-        fantasia: "",
-        cnpj: "",
-        inscricao: "",
-        setor: "",
-        email: "",
-        telefone: "",
-        pais: "",
-        estado: "",
-        cidade: "",
-        cep: "",
-        bairro: "",
-        rua: "",
-        numero: "",
-        complemento: "",
-        senha: "",
-        confirmarsenha: ""
+        razaosocial: "",fantasia: "",cnpj: "",inscricao: "",setor: "",email: "",telefone: "",pais: "",estado: "",cidade: "",cep: "",bairro: "",rua: "",numero: "",
+        complemento: "",senha: "",confirmarsenha: ""
     })
 
     const [data, setData] = useState([]);
@@ -42,66 +27,23 @@ function PaginaRegistroEmpresa() {
     }
     const addData = (e) => {
         e.preventDefault();
-        const { razaosocial, fantasia, cnpj, inscricao, setor, email, telefone, pais, estado, cidade, cep, bairro, rua, numero, complemento, senha, confirmarsenha } = ValorDeEntrada;
         if (troca == false) {
-            if (!razaosocial) {
-                alert("Razao social é um campo requirido")
+            if (!ValorDeEntrada.razaosocial, !ValorDeEntrada.fantasia, !ValorDeEntrada.cnpj, !ValorDeEntrada.inscricao, !ValorDeEntrada.setor, !ValorDeEntrada.email, !ValorDeEntrada.telefone) {
+                alert("Há campos não preenchidos")
             }
-            else if (!fantasia) {
-                alert("Fantasia é um campo requirido")
-            }
-            else if (!cnpj) {
-                alert("Cnpj é um campo requirido")
-            }
-            else if (!inscricao) {
-                alert("Incrição Estadual é um campo requirido")
-            }
-            else if (!setor) {
-                alert("Setor de Atuação é um campo requirido")
-            }
-            else if (!email) {
-                alert("E-Mail é um campo requirido")
-            }
-            else if (!email.includes("@")) {
+            else if (!ValorDeEntrada.email.includes("@")) {
                 alert("E-Mail invalido")
             }
-            else if (!telefone) {
-                alert("Telefone é um campo requirido")
-            }else{
-            setTroca(true)
-            setTrocaBotao('Criar Conta')
+            else {
+                setTroca(true)
+                setTrocaBotao('Criar Conta')
             }
         } else {
-            localStorage.setItem("UsuarioEmpresa", JSON.stringify([...data, ValorDeEntrada]));
 
-            if (!pais) {
-                alert("Pais é um campo obrigatorio")
+            if (!ValorDeEntrada.pais, !ValorDeEntrada.estado, !ValorDeEntrada.cidade, !ValorDeEntrada.cep, !ValorDeEntrada.bairro, !ValorDeEntrada.rua, !ValorDeEntrada.numero, !ValorDeEntrada.complemento, !ValorDeEntrada.senha, !ValorDeEntrada.confirmarsenha) {
+                alert("Há campos não preenchidos")
             }
-            else if (!estado) {
-                alert("Estado é um campo obrigatorio")
-            }
-            else if (!cidade) {
-                alert("cidade é um campo obrigatorio")
-            }
-            else if (!cep) {
-                alert("cep é um campo obrigatorio")
-            }
-            else if (!bairro) {
-                alert("bairro é um campo obrigatorio")
-            }
-            else if (!rua) {
-                alert("rua é um campo obrigatorio")
-            }
-            else if (!numero) {
-                alert("numero é um campo obrigatorio")
-            }
-            else if (!complemento) {
-                alert("complemento é um campo obrigatorio")
-            }
-            else if (!senha) {
-                alert("senha é um campo obrigatorio")
-            }
-            else if (!confirmarsenha == senha) {
+            else if (!ValorDeEntrada.confirmarsenha == ValorDeEntrada.senha) {
                 alert("Ambas as senha tem que ser iguais")
             }
             else {
@@ -131,46 +73,45 @@ function PaginaRegistroEmpresa() {
                                 e.preventDefault()
                                 addData(e)
                             }}>
-                            {/* Campos do 1 Form */}
-                            {troca == false ? (
+                            {!troca ? (
                                 <div className=" grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
                                     <div className="w-auto">
                                         <div className="w-4/5">
-                                            <label htmlFor="name" className="block text-sm font-medium leading-6 text-black">Razão Social: </label>
+                                            <label htmlFor="razaosocial" className="block text-sm font-medium leading-6 text-black">Razão Social: </label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="razaosocial" name="razaosocial" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.razaosocial} id="razaosocial" name="razaosocial" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto ">
                                         <div className="w-4/5">
-                                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Fantasia:</label>
+                                            <label htmlFor="fantasia" className="block text-sm font-medium leading-6 text-black">Fantasia:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="fantasia" name="fantasia" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.fantasia} id="fantasia" name="fantasia" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">CNPJ:</label>
+                                            <label htmlFor="cnpj" className="block text-sm font-medium leading-6 text-black">CNPJ:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="cnpj" name="cnpj" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.cnpj} id="cnpj" name="cnpj" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto ">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Inscrição Estadual:</label>
+                                            <label htmlFor="inscricao" className="block text-sm font-medium leading-6 text-black">Inscrição Estadual:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="inscricao" name="inscricao" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.inscricao} id="inscricao" name="inscricao" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Setor de atuação:</label>
+                                            <label htmlFor="setor" className="block text-sm font-medium leading-6 text-black">Setor de atuação:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="setor" name="setor" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.setor} id="setor" name="setor" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -178,15 +119,15 @@ function PaginaRegistroEmpresa() {
                                         <div className="sm:col-span-3">
                                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">E-Mail:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="email" name="email" type="email" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.email} id="email" name="email" type="email" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">Telefone:</label>
+                                            <label htmlFor="telefone" className="block text-sm font-medium leading-6 text-black">Telefone:</label>
                                             <div className="mt-2">
-                                                <input onChange={getdata} id="telefone" name="telefone" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.telefone} id="telefone" name="telefone" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
@@ -195,88 +136,87 @@ function PaginaRegistroEmpresa() {
                                 <div className=" grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">
                                     <div className="w-auto">
                                         <div className="w-4/5">
-                                            <label htmlFor="name" className="block ml-6 text-sm font-medium leading-6 text-black">País: </label>
+                                            <label htmlFor="pais" className="block ml-6 text-sm font-medium leading-6 text-black">País: </label>
                                             <div className="">
-                                                <input onChange={getdata} id="pais" name="pais" type="text" required className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.pais} id="pais" name="pais" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto ">
                                         <div className="w-4/5">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Estado(UF):</label>
+                                            <label htmlFor="estado" className="block ml-6 text-sm font-medium leading-6 text-black">Estado(UF):</label>
                                             <div className="">
-                                                <input onChange={getdata} id="estado" name="estado" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.estado} id="estado" name="estado" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Cidade:</label>
+                                            <label htmlFor="cidade" className="block ml-6 text-sm font-medium leading-6 text-black">Cidade:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="cidade" name="cidade" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.cidade} id="cidade" name="cidade" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto ">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">CEP:</label>
+                                            <label htmlFor="cep" className="block ml-6 text-sm font-medium leading-6 text-black">CEP:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="cep" name="cep" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.cep} id="cep" name="cep" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Bairro:</label>
+                                            <label htmlFor="bairro" className="block ml-6 text-sm font-medium leading-6 text-black">Bairro:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="bairro" name="bairro" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.bairro} id="bairro" name="bairro" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Rua:</label>
+                                            <label htmlFor="rua" className="block ml-6 text-sm font-medium leading-6 text-black">Rua:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="rua" name="rua" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.rua} id="rua" name="rua" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Numero:</label>
+                                            <label htmlFor="numero" className="block ml-6 text-sm font-medium leading-6 text-black">Numero:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="numero" name="numero" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.numero} id="numero" name="numero" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">complemento:</label>
+                                            <label htmlFor="complemento" className="block ml-6 text-sm font-medium leading-6 text-black">complemento:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="complemento" name="complemento" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.complemento} id="complemento" name="complemento" type="text" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Senha:</label>
+                                            <label htmlFor="senha" className="block ml-6 text-sm font-medium leading-6 text-black">Senha:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="senha" name="senha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.senha} id="senha" name="senha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-auto">
                                         <div className="sm:col-span-3">
-                                            <label htmlFor="email" className="block ml-6 text-sm font-medium leading-6 text-black">Confirmar Senha:</label>
+                                            <label htmlFor="confirmarsenha" className="block ml-6 text-sm font-medium leading-6 text-black">Confirmar Senha:</label>
                                             <div className="">
-                                                <input onChange={getdata} id="confirmar Senha" name="confirmarsenha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
+                                                <input onChange={getdata} value={ValorDeEntrada.confirmarsenha}  id="confirmarSenha" name="confirmarsenha" type="password" className="block w-96 rounded-3xl border-0 p-2.5 ring-4 ring-cyan-400" />
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <div className='flex text-red-500 font-semibold justify-center mt-4'>{error && <h1>{error}</h1>}</div> */}
                                 </div>)}
                             <div className="flex w-full mt-2 xl:mt-10 justify-center">
-                                <button id='butao' type='submit' className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full ">
+                                <button id='butao' onClick={() => {console.log(ValorDeEntrada)}} type='submit' className="w-auto bg-cyan-400 hover:bg-cyan-600 text-black font-semibold p-4 xl:mt-3.5 px-4 rounded-full ">
                                     {trocaBotao}
                                 </button>
                             </div>

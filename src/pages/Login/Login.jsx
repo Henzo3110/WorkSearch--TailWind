@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TiUser } from "react-icons/ti";
-import facebookIcon from '/facebook.svg'
+// import facebookIcon from '/facebook.svg'
 import googleIcon from '/google.svg'
-import instagramIcon from '/instagram.svg'
+// import instagramIcon from '/instagram.svg'
+import Swal from "sweetalert2"
 
 function Login() {
     const Navigate = useNavigate()
@@ -29,18 +30,15 @@ function Login() {
     const addData = (e) =>{
         e.preventDefault();
 
-        const getuserarr = localStorage.getItem("UsuarioEmpresa");
+        const getuserarr = localStorage.getItem("UsuarioEmpresa","UsuarioCandidato");
 
         const {email,senha} = ValorDeEntrada;
 
-        if(email === ""){
-            alert("Campo E-mail não foi preenchido")
+        if(!email,!senha){
+            alert("Há campos não preenchido")
         }
         else if (!email.includes("@")){
-            alert("E-Mail invalido")
-        }
-        else if (!senha === ""){
-            alert("Campo senha não foi preenchido");
+            alert("E-Mail invalido! Insira '@'")
         }
         else {
             
@@ -52,12 +50,25 @@ function Login() {
 
                 if(userlogin.length === 0){
                     alert("Usuario Invalido")
+
+                    // (err) => {
+                    //     console.log(err)
+                    //     Swal.fire({
+                    //       title: "Erro",
+                    //       text: `UM ERRO OCORREU`,
+                    //       text: `${err.response.data.erro == undefined ? "Erro interno de server" : err.response.data.erro}`,
+                    //       icon: "error",
+                    //       iconColor: "red",
+                    //       confirmButtonColor: "var(--azul)",
+                    //       confirmButtonText: "Confirmar",
+                    //     })}
                 }else{
                     Navigate('/')
                 }
             }
         }
     }
+    
 
 
 
@@ -76,7 +87,7 @@ function Login() {
                         <div className="w-4/5">
                             <label  className="block text-sm font-medium leading-6 text-white ml-2.5">E-mail:</label>
                             <div className="mt-2">
-                                <input onChange={getdata} id="email" name="email" type="email"  className="lock w-96 rounded-full border-0 p-2.5 ring-4 ring-sky-400" />
+                                <input onChange={getdata} value={ValorDeEntrada.email} id="email" name="email" type="email"  className="lock w-96 rounded-full border-0 p-2.5 ring-4 ring-sky-400" />
                             </div>
                         </div>
                     </div>
@@ -84,7 +95,7 @@ function Login() {
                         <div className="sm:col-span-3">
                             <label  className="block text-sm font-medium leading-6 text-white ml-2.5">Senha:</label>
                             <div className="mt-2">
-                                <input onChange={getdata} id="senha" name="senha" type="password" className="block w-96 rounded-full border-0 p-2.5 ring-4  ring-sky-400" />
+                                <input onChange={getdata} value={ValorDeEntrada.senha} id="senha" name="senha" type="password" className="block w-96 rounded-full border-0 p-2.5 ring-4  ring-sky-400" />
                             </div>
                             <div id='EmailSenhaErr' className='hidden justify-center mt-6'>
                                 <small className='text-red-500'>E-mail ou Senha Incorreto</small>
@@ -103,9 +114,9 @@ function Login() {
                         <p>-----------------</p><h1> OU ACESSAR COM </h1><p>-----------------</p>
                     </div>
                     <div className='flex justify-evenly text-sm mt-2'>
-                        <a href='' target="_blank"><img src={facebookIcon} alt="facebook" className='w-10' /></a>
+                        {/* <a href='' target="_blank"><img src={facebookIcon} alt="facebook" className='w-10' /></a> */}
                         <a href='' target="_blank"><img src={googleIcon} alt="google" className='w-10' /></a>
-                        <a href='' target="_blank"><img src={instagramIcon} alt="instagram" className='w-10' /></a>
+                        {/* <a href='' target="_blank"><img src={instagramIcon} alt="instagram" className='w-10' /></a> */}
                     </div>
                     <div className="flex w-full mt-5 justify-between">
                         <div className="flex flex-col">
