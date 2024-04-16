@@ -1,16 +1,36 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import api from '../../utils/Axios/Axios'
 
 function PaginaRegistroUser() {
     const Navigate = useNavigate()
     const [troca, setTroca] = useState(false)
     const [trocaBotao, setTrocaBotao] = useState('próximo passo')
+    
 
     const [ValorDeEntrada, setValorDeEntrada] = useState({
         nome: "",sobrenome: "",email: "",telefone: "",datadenascimento: "",cpf: "",pais: "",estado: "",cidade: "",cep: "",bairro: "",rua: "",numero: "",
         complemento: "",senha: "",confirmarsenha: ""
-
     })
+
+    const dataCandidato = {
+        nome: ValorDeEntrada.nome,
+    }
+    const dataEndereco = {
+        bairro : ValorDeEntrada.bairro,
+    }
+
+    const HandleSubmit = (e) => {
+            e.preventDefault()
+
+            api.post('/enderecos/', dataEndereco)
+            .then(res => console.log("res api ->", res))
+            .then(err => console.log("err api ->",err))
+
+            api.post('/candidatos/', dataCandidato)
+            .then(res => console.log("res api ->", res))
+            .then(err => console.log("err api ->",err))
+    }
 
     const [data, setData] = useState([]);
     console.log(ValorDeEntrada);
@@ -28,7 +48,7 @@ function PaginaRegistroUser() {
     const addData = (e) => {
         e.preventDefault();
         if (troca == false) {
-            if (!ValorDeEntrada.nome, !ValorDeEntrada.sobrenome, !ValorDeEntrada.datadenascimento, !ValorDeEntrada.cpf, !ValorDeEntrada.email, !ValorDeEntrada.telefone) {
+            if (!ValorDeEntrada.nome || !ValorDeEntrada.sobrenome || !ValorDeEntrada.datadenascimento || !ValorDeEntrada.cpf || !ValorDeEntrada.email || !ValorDeEntrada.telefone) {
                 alert("Há campos não preenchidos")
             }
             else if (!ValorDeEntrada.email.includes("@")) {
@@ -41,13 +61,14 @@ function PaginaRegistroUser() {
         } else {
             localStorage.setItem("UsuarioCandidato", JSON.stringify([...data, ValorDeEntrada]))
 
-            if (!ValorDeEntrada.pais, !ValorDeEntrada.estado, !ValorDeEntrada.cidade, !ValorDeEntrada.cep, !ValorDeEntrada.bairro, !ValorDeEntrada.rua, !ValorDeEntrada.numero, !ValorDeEntrada.complemento, !ValorDeEntrada.senha, !ValorDeEntrada.confirmarsenha) {
+            if (!ValorDeEntrada.pais || !ValorDeEntrada.estado || !ValorDeEntrada.cidade || !ValorDeEntrada.cep || !ValorDeEntrada.bairro || !ValorDeEntrada.rua || !ValorDeEntrada.numero || !ValorDeEntrada.senha || !ValorDeEntrada.confirmarsenha) {
                 alert("Há campos não preenchidos")
             }
             else if (ValorDeEntrada.confirmarsenha != ValorDeEntrada.senha) {
                 alert("Ambas as senha tem que ser iguais")
             }
             else {
+                
                 Navigate('/')
             }
         }
@@ -67,11 +88,7 @@ function PaginaRegistroUser() {
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full h-full pt-8 pb-12 border-4 rounded-3xl bg-gray-100 ">
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault()
-                                addData(e)
-                            }}>
+                        <form onSubmit={HandleSubmit}>
                             {/* Campos do 1 Form */}
                             {troca == false ? (
                                 <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:mt-10 2xl:gap-x-48 2xl:gap-y-12">

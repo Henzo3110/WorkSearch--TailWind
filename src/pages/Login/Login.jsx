@@ -5,6 +5,7 @@ import { TiUser } from "react-icons/ti";
 import googleIcon from '/google.svg'
 // import instagramIcon from '/instagram.svg'
 import Swal from "sweetalert2"
+import api from '../../utils/Axios/Axios';
 
 function Login() {
     const Navigate = useNavigate()
@@ -13,6 +14,13 @@ function Login() {
         senha:""
 
     })
+
+    const HandleSubmit = (e) => {
+        e.preventDefault()
+        api.get('/candidatos/login', ValorDeEntrada)
+        .then(res => console.log("res api ->", res))
+        .then(err => console.log("err api ->",err))
+}
 
     const [data,setData] = useState([]);
     console.log(ValorDeEntrada);
@@ -82,7 +90,7 @@ function Login() {
             <TiUser className='flex mt-0 text-cyan-400 bg-white border-solid border-4 rounded-full border-cyan-400 text-9xl ' />
                 <h2 className="font-bold text-4xl mt-4 text-sky-300">Login</h2>
                 <h1 className="font-bold text-2xl mt-2 text-white">Bem-Vindo De Volta</h1>
-                <from>
+                <from onSubmit={HandleSubmit}>
                     <div className="mt-8 grid grid-cols-1 gap-2">
                         <div className="w-4/5">
                             <label  className="block text-sm font-medium leading-6 text-white ml-2.5">E-mail:</label>
