@@ -49,7 +49,7 @@ function PaginaRegistroEmpresa() {
             if (!ValorDeEntrada.pais, !ValorDeEntrada.estado, !ValorDeEntrada.cidade, !ValorDeEntrada.cep, !ValorDeEntrada.bairro, !ValorDeEntrada.rua, !ValorDeEntrada.numero, !ValorDeEntrada.complemento, !ValorDeEntrada.senha, !ValorDeEntrada.confirmarsenha) {
                 alert("Há campos não preenchidos")
             }
-            else if (!ValorDeEntrada.confirmarsenha == ValorDeEntrada.senha) {
+            else if (ValorDeEntrada.confirmarsenha != ValorDeEntrada.senha) {
                 alert("Ambas as senha tem que ser iguais")
             }
             else {
