@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function PaginaRegistroEmpresa() {
@@ -6,6 +6,12 @@ function PaginaRegistroEmpresa() {
     const [troca, setTroca] = useState(false)
     const [trocaBotao, setTrocaBotao] = useState('próximo passo')
 
+    useEffect(()=>{
+        const token = localStorage.getItem('UsuarioEmpresa')
+        if (token) {
+            localStorage.removeItem('UsuarioEmpresa')
+        }
+    },[])
 
     const [ValorDeEntrada, setValorDeEntrada] = useState({
         razaosocial: "",fantasia: "",cnpj: "",inscricao: "",setor: "",email: "",telefone: "",pais: "",estado: "",cidade: "",cep: "",bairro: "",rua: "",numero: "",
@@ -48,7 +54,7 @@ function PaginaRegistroEmpresa() {
             }
             else {
                 localStorage.setItem("UsuarioEmpresa", JSON.stringify([...data, ValorDeEntrada]));
-                Navigate('/')
+                Navigate('/Entrou')
             }
         }
     }

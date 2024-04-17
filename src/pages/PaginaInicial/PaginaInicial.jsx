@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -6,6 +7,16 @@ import { useNavigate } from 'react-router-dom'
 
 function PaginaInicial() {
     const Navigate = useNavigate()
+
+    useEffect(()=>{
+        const tokenEmpresa = localStorage.getItem('UsuarioEmpresa')
+        const tokenCandidato = localStorage.getItem('UsuarioCandidato')
+        if ( tokenCandidato || tokenEmpresa ) {
+            localStorage.removeItem('UsuarioEmpresa')
+            localStorage.removeItem('UsuarioCandidato')
+        }
+    },[])
+
     return (
         <>
             <div className="bg-[url('/fundoInicial.jpg')] absolute top-0 -z-10 bg-cover w-screen h-screen"></div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../utils/Axios/Axios'
 
@@ -7,6 +7,12 @@ function PaginaRegistroUser() {
     const [troca, setTroca] = useState(false)
     const [trocaBotao, setTrocaBotao] = useState('próximo passo')
     
+    useEffect(()=>{
+        const token = localStorage.getItem('UsuarioCandidato')
+        if (token) {
+            localStorage.removeItem('UsuarioCandidato')
+        }
+    },[])
 
     const [ValorDeEntrada, setValorDeEntrada] = useState({
         nome: "",sobrenome: "",email: "",telefone: "",datadenascimento: "",cpf: "",pais: "",estado: "",cidade: "",cep: "",bairro: "",rua: "",numero: "",
@@ -15,9 +21,21 @@ function PaginaRegistroUser() {
 
     const dataCandidato = {
         nome: ValorDeEntrada.nome,
+        sobrenome: ValorDeEntrada.sobrenome,
+        cpf: ValorDeEntrada.cpf,
+        dataNascimento: ValorDeEntrada.datadenascimento,
+        email: ValorDeEntrada.email,
+        telefone: ValorDeEntrada.telefone,
+        senha: ValorDeEntrada.senha
     }
     const dataEndereco = {
-        bairro : ValorDeEntrada.bairro,
+        pais: ValorDeEntrada.pais,
+        estado: ValorDeEntrada.estado,
+        cidade: ValorDeEntrada.cidade,
+        bairro: ValorDeEntrada.bairro,
+        logradouro: ValorDeEntrada.complemento,
+        numero: ValorDeEntrada.numero,
+        cep: ValorDeEntrada.cep
     }
 
     const HandleSubmit = (e) => {
@@ -33,7 +51,7 @@ function PaginaRegistroUser() {
     }
 
     const [data, setData] = useState([]);
-    console.log(ValorDeEntrada);
+    console.log("valorEntrada -> ",ValorDeEntrada);
 
     const getdata = (e) => {
         const { value, name } = e.target;
@@ -68,8 +86,7 @@ function PaginaRegistroUser() {
                 alert("Ambas as senha tem que ser iguais")
             }
             else {
-                
-                Navigate('/')
+                Navigate('/Entrou')
             }
         }
     }
